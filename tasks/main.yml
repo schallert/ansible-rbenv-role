@@ -16,7 +16,6 @@
   git: >
     repo={{ rbenv_repo }}
     dest={{ rbenv_root }}
-    version={{ rbenv.version }}
     accept_hostkey=true
   when: rbenv.env == "system"
   tags:
@@ -32,7 +31,6 @@
   git: >
     repo={{ item.repo }}
     dest={{ rbenv_root }}/plugins/{{ item.name }}
-    version={{ item.version }}
     accept_hostkey=true
   with_items: rbenv_plugins
   when: rbenv.env == "system"
@@ -43,7 +41,6 @@
   git: >
     repo={{ rbenv_repo }}
     dest={{ rbenv_root }}
-    version={{ rbenv.version }}
     accept_hostkey=true
   with_items: rbenv_users
   sudo: true
@@ -67,7 +64,6 @@
   git: >
     repo={{ item[1].repo }}
     dest={{ rbenv_root }}/plugins/{{ item[1].name }}
-    version={{ item[1].version }}
     accept_hostkey=true
   with_nested:
     - rbenv_users
