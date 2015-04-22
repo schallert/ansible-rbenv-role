@@ -17,6 +17,7 @@
     repo={{ rbenv_repo }}
     dest={{ rbenv_root }}
     accept_hostkey=true
+    force=yes
   when: rbenv.env == "system"
   tags:
     - rbenv
@@ -32,6 +33,7 @@
     repo={{ item.repo }}
     dest={{ rbenv_root }}/plugins/{{ item.name }}
     accept_hostkey=true
+    force=yes
   with_items: rbenv_plugins
   when: rbenv.env == "system"
   tags:
@@ -42,6 +44,7 @@
     repo={{ rbenv_repo }}
     dest={{ rbenv_root }}
     accept_hostkey=true
+    force=yes
   with_items: rbenv_users
   sudo: true
   sudo_user: "{{ item }}"
@@ -65,6 +68,7 @@
     repo={{ item[1].repo }}
     dest={{ rbenv_root }}/plugins/{{ item[1].name }}
     accept_hostkey=true
+    force=yes
   with_nested:
     - rbenv_users
     - rbenv_plugins
